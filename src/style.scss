@@ -1,0 +1,27 @@
+.keyboard {
+  &__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.key {
+  width: 70px;
+  height: 70px;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 0 0 #aaaaaa;
+  margin: 5px;
+  color: black;
+  transition: all 0.3s;
+
+  &_pressed {
+    box-shadow: 1px 1px 0 0 #aaaaaa;
+    margin-top: 4px;
+  }
+}
