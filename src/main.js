@@ -1,6 +1,6 @@
 import { keys, keyboard } from './config';
 
-const language = 'en';
+let language = window.localStorage.getItem('language') || 'en';
 let shift = '';
 let isCaps = false;
 
@@ -90,18 +90,27 @@ function updateTextArea(keyCode) {
     s = s.toUpperCase();
   }
   textArea.value += s;
-
-  // if (shift !== '') {
-  //   textArea.value += keys[keyCode][language].shift;
-  // } else {
-  //   textArea.value += keys[keyCode][language].char;
-  // }
+  if (keyCode === '8') {
+    textArea.value = textArea.value.slice(0, -1);
+  }
 }
 
 window.addEventListener('keydown', (event) => {
   const { keyCode, location } = event;
-  const id = location === 0 ? keyCode : `${keyCode}-${location}`;
+  const id = location === 0 ? `${keyCode}` : `${keyCode}-${location}`;
   const button = document.querySelector(`[data-code="${id}"]`);
+
+  if (event.altKey && event.shiftKey) {
+    if (language === 'en') {
+      language = 'ru';
+    } else {
+      language = 'en';
+    }
+    localStorage.setItem('language', language);
+    regenerateKeyboard();
+  }
+
+  console.log(event);
 
   if (button) {
     if (keyCode === 16) {

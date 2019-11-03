@@ -121,6 +121,7 @@ export const keys = {
     name: 'Caps lock',
     ru: { char: '', shift: '' },
     en: { char: '', shift: '' },
+    width: 110,
   },
   65: {
     ru: { char: 'ф', shift: 'Ф' },
@@ -170,6 +171,7 @@ export const keys = {
     name: 'Enter',
     ru: { char: '\n', shift: '\n' },
     en: { char: '\n', shift: '\n' },
+    width: 110,
   },
   // shift
   '16-1': {
