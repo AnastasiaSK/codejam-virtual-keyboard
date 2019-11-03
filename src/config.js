@@ -60,8 +60,8 @@ export const keys = {
 
   9: {
     name: 'tab',
-    ru: { char: ' ', shift: ' ' },
-    en: { char: ' ', shift: ' ' },
+    ru: { char: '\t', shift: '\t' },
+    en: { char: '\t', shift: '\t' },
   },
   81: {
     ru: { char: 'й', shift: 'Й' },
@@ -173,7 +173,7 @@ export const keys = {
   },
   // shift
   '16-1': {
-    name: 'shift',
+    name: 'Shift',
     ru: { char: '', shift: '' },
     en: { char: '', shift: '' },
   },
@@ -219,7 +219,7 @@ export const keys = {
   },
   // right shift
   '16-2': {
-    name: 'shift',
+    name: 'Shift',
     ru: { char: '', shift: '' },
     en: { char: '', shift: '' },
   },
@@ -250,8 +250,8 @@ export const keys = {
   },
   // space
   32: {
-    ru: { char: '', shift: '' },
-    en: { char: '', shift: '' },
+    ru: { char: ' ', shift: ' ' },
+    en: { char: ' ', shift: ' ' },
   },
   // alt right
   '18-2': {
