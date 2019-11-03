@@ -115,6 +115,7 @@ window.addEventListener('keydown', (event) => {
   if (event.altKey && event.shiftKey) {
     changeLanguage();
     regenerateKeyboard();
+    document.querySelector(`[data-code="${id}"]`).classList.add('key_pressed');
   }
 
   if (button) {
@@ -165,6 +166,7 @@ document.querySelector('.wrapper').addEventListener('click', (event) => {
     if (keyCode === '16-1' || keyCode === '16-2') {
       if (shift === '') {
         shift = keyCode;
+        isUnPress = false;
       } else {
         shift = '';
       }
@@ -174,10 +176,17 @@ document.querySelector('.wrapper').addEventListener('click', (event) => {
       changeLanguage();
       shift = '';
       regenerateKeyboard();
+      document
+        .querySelector(`[data-code="${keyCode}"]`)
+        .classList.add('key_pressed');
     }
 
     if (isUnPress) {
-      setTimeout(() => event.target.classList.remove('key_pressed'), 300);
+      setTimeout(() => {
+        document
+          .querySelector(`[data-code="${keyCode}"]`)
+          .classList.remove('key_pressed');
+      }, 300);
     }
   }
 });
