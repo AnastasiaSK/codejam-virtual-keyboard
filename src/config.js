@@ -172,7 +172,7 @@ export const keys = {
     en: { char: '\n', shift: '\n' },
   },
   // shift
-  16: {
+  '16-1': {
     name: 'shift',
     ru: { char: '', shift: '' },
     en: { char: '', shift: '' },
@@ -218,10 +218,11 @@ export const keys = {
     en: { char: '/', shift: '?' },
   },
   // right shift
-  // 16: {
-  //   ru: { char: '', shift: '' },
-  //   en: { char: '', shift: '' },
-  // },
+  '16-2': {
+    name: 'shift',
+    ru: { char: '', shift: '' },
+    en: { char: '', shift: '' },
+  },
 
   // arrow up
   38: {
@@ -230,19 +231,19 @@ export const keys = {
   },
 
   // ctrl
-  17: {
+  '17-1': {
     name: 'Ctrl',
     ru: { char: '', shift: '' },
     en: { char: '', shift: '' },
   },
   // win
-  91: {
+  '91-1': {
     name: 'Win',
     ru: { char: '', shift: '' },
     en: { char: '', shift: '' },
   },
   // alt
-  18: {
+  '18-1': {
     name: 'Alt',
     ru: { char: '', shift: '' },
     en: { char: '', shift: '' },
@@ -253,15 +254,17 @@ export const keys = {
     en: { char: '', shift: '' },
   },
   // alt right
-  // 18: {
-  //   ru: { char: '', shift: '' },
-  //   en: { char: '', shift: '' },
-  // },
+  '18-2': {
+    name: 'Alt',
+    ru: { char: '', shift: '' },
+    en: { char: '', shift: '' },
+  },
   // ctrl right
-  // 17: {
-  //   ru: { char: '', shift: '' },
-  //   en: { char: '', shift: '' },
-  // },
+  '17-2': {
+    name: 'Ctrl',
+    ru: { char: '', shift: '' },
+    en: { char: '', shift: '' },
+  },
   // arrow left
   37: {
     ru: { char: '←', shift: '←' },
@@ -284,6 +287,6 @@ export const keyboard = [
   ['192', '49', '50', '51', '52', '53', '54', '55', '56', '57', '48', '189', '187', '8'],
   ['9', '81', '87', '69', '82', '84', '89', '85', '73', '79', '80', '219', '221', '220'],
   ['20', '65', '83', '68', '70', '71', '72', '74', '75', '76', '186', '222', '13'],
-  ['16', '90', '88', '67', '86', '66', '78', '77', '188', '190', '191', '16', '38'],
-  ['17', '91', '18', '32', '18', '17', '37', '40', '39'],
+  ['16-1', '90', '88', '67', '86', '66', '78', '77', '188', '190', '191', '16-2', '38'],
+  ['17-1', '91-1', '18-1', '32', '18-2', '17-2', '37', '40', '39'],
 ];

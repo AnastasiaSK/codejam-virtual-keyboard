@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .keyboard {
   &__row {
     display: flex;
@@ -22,6 +25,7 @@
 
   &_pressed {
     box-shadow: 1px 1px 0 0 #aaaaaa;
-    margin-top: 4px;
+    margin-top: 9px;
+    margin-bottom: 1px;
   }
 }

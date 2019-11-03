@@ -36,3 +36,28 @@ function generateKeyboard() {
 }
 
 document.body.append(generateKeyboard());
+
+window.addEventListener('keydown', (event) => {
+  const { keyCode, location } = event;
+  const id = location === 0 ? keyCode : `${keyCode}-${location}`;
+  const button = document.querySelector(`[data-code="${id}"]`);
+  if (button) {
+    button.classList.add('key_pressed');
+  }
+  event.preventDefault();
+});
+window.addEventListener('keyup', (event) => {
+  const { keyCode, location } = event;
+  const id = location === 0 ? keyCode : `${keyCode}-${location}`;
+  const button = document.querySelector(`[data-code="${id}"]`);
+  if (button) {
+    button.classList.remove('key_pressed');
+  }
+});
+
+document.querySelector('.keyboard').addEventListener('click', (event) => {
+  if (event.target.classList.contains('key')) {
+    event.target.classList.add('key_pressed');
+    setTimeout(() => event.target.classList.remove('key_pressed'), 500);
+  }
+});
