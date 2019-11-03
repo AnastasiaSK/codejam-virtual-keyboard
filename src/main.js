@@ -35,6 +35,10 @@ function generateKeyButton(keyCode) {
   }
 
   element.classList.add('key');
+  if (keys[keyCode].width) {
+    element.style.width = `${keys[keyCode].width}px`;
+  }
+
   return element;
 }
 
