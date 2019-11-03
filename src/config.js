@@ -118,7 +118,7 @@ export const keys = {
 
   // caps lock
   20: {
-    name: 'caps lock',
+    name: 'Caps lock',
     ru: { char: '', shift: '' },
     en: { char: '', shift: '' },
   },

@@ -2,6 +2,7 @@ import { keys, keyboard } from './config';
 
 const language = 'en';
 let shift = '';
+let isCaps = false;
 
 function generateTextArea() {
   const element = document.createElement('textarea');
@@ -17,9 +18,18 @@ function generateKeyButton(keyCode) {
     if (shift === keyCode) {
       element.classList.add('key_pressed');
     }
+    if (keyCode === '20' && isCaps) {
+      element.classList.add('key_pressed');
+    }
     element.textContent = keys[keyCode].name;
   } else if (shift !== '') {
-    element.textContent = keys[keyCode][language].shift;
+    if (isCaps) {
+      element.textContent = keys[keyCode][language].shift.toLowerCase();
+    } else {
+      element.textContent = keys[keyCode][language].shift;
+    }
+  } else if (isCaps) {
+    element.textContent = keys[keyCode][language].char.toUpperCase();
   } else {
     element.textContent = keys[keyCode][language].char;
   }
@@ -68,11 +78,24 @@ init();
 
 function updateTextArea(keyCode) {
   const textArea = document.querySelector('textarea');
+  let s = '';
   if (shift !== '') {
-    textArea.value += keys[keyCode][language].shift;
+    s = keys[keyCode][language].shift;
   } else {
-    textArea.value += keys[keyCode][language].char;
+    s = keys[keyCode][language].char;
   }
+  if (isCaps && shift !== '') {
+    s = s.toLowerCase();
+  } else if (isCaps) {
+    s = s.toUpperCase();
+  }
+  textArea.value += s;
+
+  // if (shift !== '') {
+  //   textArea.value += keys[keyCode][language].shift;
+  // } else {
+  //   textArea.value += keys[keyCode][language].char;
+  // }
 }
 
 window.addEventListener('keydown', (event) => {
@@ -83,6 +106,10 @@ window.addEventListener('keydown', (event) => {
   if (button) {
     if (keyCode === 16) {
       shift = id;
+      regenerateKeyboard();
+    }
+    if (keyCode === 20) {
+      isCaps = !isCaps;
       regenerateKeyboard();
     }
 
@@ -102,7 +129,9 @@ window.addEventListener('keyup', (event) => {
       regenerateKeyboard();
     }
 
-    button.classList.remove('key_pressed');
+    if (keyCode !== 20) {
+      button.classList.remove('key_pressed');
+    }
   }
 });
 
