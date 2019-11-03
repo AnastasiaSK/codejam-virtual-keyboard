@@ -1,5 +1,12 @@
 import { keys, keyboard } from './config';
 
+function generateTextArea() {
+  const element = document.createElement('textarea');
+  element.classList.add('textarea');
+  element.setAttribute('rows', 10);
+  return element;
+}
+
 function generateKeyButton(keyCode) {
   const element = document.createElement('div');
   element.dataset.code = keyCode;
@@ -34,8 +41,15 @@ function generateKeyboard() {
 
   return element;
 }
+function init() {
+  const element = document.createElement('div');
+  element.classList.add('wrapper');
+  element.append(generateTextArea());
+  element.append(generateKeyboard());
+  document.body.append(element);
+}
 
-document.body.append(generateKeyboard());
+init();
 
 window.addEventListener('keydown', (event) => {
   const { keyCode, location } = event;
