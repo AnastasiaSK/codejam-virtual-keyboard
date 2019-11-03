@@ -94,6 +94,14 @@ function updateTextArea(keyCode) {
     textArea.value = textArea.value.slice(0, -1);
   }
 }
+function changeLanguage() {
+  if (language === 'en') {
+    language = 'ru';
+  } else {
+    language = 'en';
+  }
+  localStorage.setItem('language', language);
+}
 
 window.addEventListener('keydown', (event) => {
   const { keyCode, location } = event;
@@ -101,16 +109,9 @@ window.addEventListener('keydown', (event) => {
   const button = document.querySelector(`[data-code="${id}"]`);
 
   if (event.altKey && event.shiftKey) {
-    if (language === 'en') {
-      language = 'ru';
-    } else {
-      language = 'en';
-    }
-    localStorage.setItem('language', language);
+    changeLanguage();
     regenerateKeyboard();
   }
-
-  console.log(event);
 
   if (button) {
     if (keyCode === 16) {
@@ -147,7 +148,32 @@ window.addEventListener('keyup', (event) => {
 document.querySelector('.wrapper').addEventListener('click', (event) => {
   if (event.target.classList.contains('key')) {
     event.target.classList.add('key_pressed');
-    updateTextArea(event.target.dataset.code);
-    setTimeout(() => event.target.classList.remove('key_pressed'), 300);
+    const keyCode = event.target.dataset.code;
+    updateTextArea(keyCode);
+    let isUnPress = true;
+
+    if (keyCode === '20') {
+      isCaps = !isCaps;
+      isUnPress = !isCaps;
+      regenerateKeyboard();
+    }
+
+    if (keyCode === '16-1' || keyCode === '16-2') {
+      if (shift === '') {
+        shift = keyCode;
+      } else {
+        shift = '';
+      }
+      regenerateKeyboard();
+    }
+    if (shift !== '' && (keyCode === '18-1' || keyCode === '18-2')) {
+      changeLanguage();
+      shift = '';
+      regenerateKeyboard();
+    }
+
+    if (isUnPress) {
+      setTimeout(() => event.target.classList.remove('key_pressed'), 300);
+    }
   }
 });
