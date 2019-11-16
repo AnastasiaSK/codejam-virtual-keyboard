@@ -4,45 +4,47 @@ let language = window.localStorage.getItem('language') || 'en';
 let shift = '';
 let isCaps = false;
 
-function generateTextArea() {
+const generateTextArea = () => {
   const element = document.createElement('textarea');
   element.classList.add('textarea');
   element.setAttribute('rows', 10);
   return element;
-}
+};
 
-function generateKeyButton(keyCode) {
+const generateKeyButton = (keyCode) => {
   const element = document.createElement('div');
   element.dataset.code = keyCode;
-  if (keys[keyCode].name) {
+  const key = keys[keyCode];
+  const lang = key[language];
+  if (key.name) {
     if (shift === keyCode) {
       element.classList.add('key_pressed');
     }
     if (keyCode === '20' && isCaps) {
       element.classList.add('key_pressed');
     }
-    element.textContent = keys[keyCode].name;
+    element.textContent = key.name;
   } else if (shift !== '') {
     if (isCaps) {
-      element.textContent = keys[keyCode][language].shift.toLowerCase();
+      element.textContent = lang.shift.toLowerCase();
     } else {
-      element.textContent = keys[keyCode][language].shift;
+      element.textContent = lang.shift;
     }
   } else if (isCaps) {
-    element.textContent = keys[keyCode][language].char.toUpperCase();
+    element.textContent = lang.char.toUpperCase();
   } else {
-    element.textContent = keys[keyCode][language].char;
+    element.textContent = lang.char;
   }
 
   element.classList.add('key');
-  if (keys[keyCode].width) {
-    element.style.width = `${keys[keyCode].width}px`;
+  if (key.width) {
+    element.style.width = `${key.width}px`;
   }
 
   return element;
-}
+};
 
-function generateKeyboardRow(rowKeys) {
+const generateKeyboardRow = (rowKeys) => {
   const element = document.createElement('div');
   element.classList.add('keyboard__row');
 
@@ -51,9 +53,9 @@ function generateKeyboardRow(rowKeys) {
   }
 
   return element;
-}
+};
 
-function generateKeyboard() {
+const generateKeyboard = () => {
   const element = document.createElement('div');
   element.classList.add('keyboard');
 
@@ -62,31 +64,34 @@ function generateKeyboard() {
   }
 
   return element;
-}
+};
 
-function regenerateKeyboard() {
+const regenerateKeyboard = () => {
   document
     .querySelector('.wrapper')
     .replaceChild(generateKeyboard(), document.querySelector('.keyboard'));
-}
+};
 
-function init() {
+const init = () => {
   const element = document.createElement('div');
   element.classList.add('wrapper');
   element.append(generateTextArea());
   element.append(generateKeyboard());
   document.body.append(element);
-}
+};
 
 init();
 
-function updateTextArea(keyCode) {
+const updateTextArea = (keyCode) => {
   const textArea = document.querySelector('textarea');
   let s = '';
+
+  const key = keys[keyCode][language];
+
   if (shift !== '') {
-    s = keys[keyCode][language].shift;
+    s = key.shift;
   } else {
-    s = keys[keyCode][language].char;
+    s = key.char;
   }
   if (isCaps && shift !== '') {
     s = s.toLowerCase();
@@ -97,15 +102,15 @@ function updateTextArea(keyCode) {
   if (keyCode === '8') {
     textArea.value = textArea.value.slice(0, -1);
   }
-}
-function changeLanguage() {
+};
+const changeLanguage = () => {
   if (language === 'en') {
     language = 'ru';
   } else {
     language = 'en';
   }
   localStorage.setItem('language', language);
-}
+};
 
 window.addEventListener('keydown', (event) => {
   const { keyCode, location } = event;
