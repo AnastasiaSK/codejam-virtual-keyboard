@@ -1,0 +1,36 @@
+{
+  "name": "codejam-virtual-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.html",
+  "scripts": {
+    "lint": "eslint .",
+    "build": "webpack",
+    "start": "webpack-dev-server --open --host 0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnastasiaSK/codejam-virtual-keyboard.git"
+  },
+  "author": "AnastasiaSK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AnastasiaSK/codejam-virtual-keyboard/issues"
+  },
+  "homepage": "https://github.com/AnastasiaSK/codejam-virtual-keyboard#readme",
+  "devDependencies": {
+    "css-loader": "^3.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
